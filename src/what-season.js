@@ -18,12 +18,25 @@ function getSeason(date) {
             return 'Unable to determine the time of year!';
         }
 
+        if (typeof date === 'number'
+            || typeof date === 'string'
+            || typeof date === 'boolean'
+            || typeof date === undefined
+            // || typeof date === 'object'
+            || typeof date === 'bigint'
+            || typeof date === 'symbol'
+            || typeof date === 'function'
+        ) {
+            return false;
+        }
+
         if (Object.prototype.toString.call(date) !== '[object Date]'
             || Object.getPrototypeOf(date) !== Object.getPrototypeOf(new Date())
             || !date.valueOf()
-            || !date.getMonth()
+            // || !date.getMonth()
+            // || date.getFullYear() < 1970
         ) {
-            throw new Error('Invalid date!');
+            // throw new Error('Invalid date!');
 
             return 'Invalid date!';
         }
@@ -74,7 +87,11 @@ function getSeason(date) {
     return 'Invalid date!';
 }
 
-// console.log(getSeason((new Date(1994, 1, 2, 3, 4, 5))));
+console.log(
+    getSeason(
+        [2019, '27', 0 + '1']
+    )
+);
 // console.log(getSeason({ John: 'Smith' }));
 // console.log(getSeason(20192701));
 // console.log(getSeason(() => new Date()));
