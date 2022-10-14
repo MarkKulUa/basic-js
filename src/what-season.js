@@ -11,55 +11,64 @@ const {NotImplementedError} = require('../extensions/index.js');
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  *
  */
-function getSeason(/*date*/) {
+function getSeason(date) {
 
-    throw new NotImplementedError('Not implemented');
-    if (date === undefined) {
-        return 'Unable to determine the time of year!';
-    }
-
-    if (Object.prototype.toString.call(date) !== '[object Date]') {
-        return 'Invalid date!';
-    }
-
-    //TODO: пофиксить test.js:200:, test.js:217, test.js:258
-    if (date.toString() === (new Date()).toString()) {
-        return 'Invalid date!';
-    }
-
-    console.log('date', date);
-
-    if (date && date instanceof Date && !isNaN(date) && Date.parse(date)) {
-        let month = date.getMonth();
-        let result = '';
-
-        switch (month) {
-            case 11:
-            case 0:
-            case 1:
-                result = 'winter';
-                break;
-            case 2:
-            case 3:
-            case 4:
-                result = 'spring';
-                break;
-            case 5:
-            case 6:
-            case 7:
-                result = 'summer';
-                break;
-            case 8:
-            case 9:
-            case 10:
-                result = 'autumn';
-                break;
-            default:
-                result = 'fall';
+    try {
+        if (date === undefined) {
+            return 'Unable to determine the time of year!';
         }
 
-        // console.log('date:', date, ' month:', date.getMonth());
-        return result;
+        if (Object.prototype.toString.call(date) !== '[object Date]'
+            || Object.getPrototypeOf(date) !== Object.getPrototypeOf(new Date())
+            || !date.valueOf()
+            || !date.getMonth()
+        ) {
+            throw new Error('Invalid date!');
+
+            return 'Invalid date!';
+        }
+
+        //TODO: пофиксить test.js:200:, test.js:217, test.js:258
+        if (date.toString() === (new Date()).toString()) {
+            return 'Invalid date!';
+        }
+
+        console.log('date', date);
+
+        if (date && date instanceof Date && !isNaN(date) && Date.parse(date)) {
+            let month = date.getMonth();
+            let result = '';
+
+            switch (month) {
+                case 11:
+                case 0:
+                case 1:
+                    result = 'winter';
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    result = 'spring';
+                    break;
+                case 5:
+                case 6:
+                case 7:
+                    result = 'summer';
+                    break;
+                case 8:
+                case 9:
+                case 10:
+                    result = 'autumn';
+                    break;
+                default:
+                    result = 'fall';
+            }
+
+            // console.log('date:', date, ' month:', date.getMonth());
+            return result;
+        }
+    } catch (e) {
+        throw new Error('Invalid date!');
     }
 
     return 'Invalid date!';
