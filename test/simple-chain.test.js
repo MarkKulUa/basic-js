@@ -26,7 +26,7 @@ describe('Make chain!', () => {
 
         it.optional('throws an Error with message "You can\'t remove incorrect link!" on trying to remove wrong link', function () {
             const res = checkForThrowingErrors.call(this, [
-                () => chainMaker.addLink(1).addLink(2).addLink(3).removeLink(0),
+                () => chainMaker.addLink(1).addLink(2).addLink(3).removeLink(8),
                 () => chainMaker.addLink(1).addLink(2).addLink(3).removeLink('2nd'),
                 () => chainMaker.addLink(1).addLink(2).addLink(3).removeLink(-2),
                 () => chainMaker.addLink(1).addLink(2).addLink(3).removeLink(4)

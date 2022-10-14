@@ -42,7 +42,7 @@ const chainMaker = {
   removeLink(position) {
     if (!Number.isInteger(position) || !chain[position] || position <= -1) {
       chain = [];
-      throw new Error(`You can't remove incorrect link!`);
+      throw new Error("You can't remove incorrect link!");
     }
 
     chain.splice(position-1, 1);
@@ -61,12 +61,13 @@ const chainMaker = {
 };
 
 // console.log(
-//     chainMaker.addLink('GHI').addLink(null).reverseChain().addLink(333).reverseChain().reverseChain().addLink(0).reverseChain().reverseChain().addLink('GHI').finishChain()
-// //     // chainMaker.addLink(1).addLink/(2).addLink(3).removeLink(0)
-// //     // chainMaker.addLink(1).addLink(2).addLink(3).removeLink('2nd')
-// //     // chainMaker.addLink(1).addLink(2).addLink(3).removeLink(-2)
-// //     // chainMaker.addLink(1).addLink(2).addLink(3).removeLink(4)
-// //     chainMaker.addLink(function () { }).addLink('2nd').addLink('3rd').removeLink(2).reverseChain().finishChain()
+//     chainMaker.addLink(1).addLink(2).addLink(3).removeLink(0)
+// //     chainMaker.addLink('GHI').addLink(null).reverseChain().addLink(333).reverseChain().reverseChain().addLink(0).reverseChain().reverseChain().addLink('GHI').finishChain()
+// // //     // chainMaker.addLink(1).addLink/(2).addLink(3).removeLink(0)
+// // //     // chainMaker.addLink(1).addLink(2).addLink(3).removeLink('2nd')
+// // //     // chainMaker.addLink(1).addLink(2).addLink(3).removeLink(-2)
+// // //     // chainMaker.addLink(1).addLink(2).addLink(3).removeLink(4)
+// // //     chainMaker.addLink(function () { }).addLink('2nd').addLink('3rd').removeLink(2).reverseChain().finishChain()
 // );
 module.exports = {
   chainMaker
